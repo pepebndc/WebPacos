@@ -1,0 +1,555 @@
+
+<!doctype html>
+<html lang="">
+
+<head>
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
+</script>
+<style type ="text/css" >
+   .footer{
+       position: relative;
+       text-align: center;
+       bottom: 0px;
+       width: 100%;
+   }
+</style>
+<style>
+  google-map {
+    height: 600px;
+  }
+</style>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Els Pacos" />
+  <title>Els Pacos</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#388E3C">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#388E3C">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Els Pacos">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/chrome.png">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <!-- will be replaced with elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
+  <link rel="import" href="bower_components/paper-button/paper-button.html">
+  <link rel="import" href="bower_components/paper-input/paper-imput.html">
+  <link rel="import" href="bower_components/paper-checkbox/paper-chekcbox.html">
+  <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+  <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+  <link rel="import" href="bower_components/iron-icons/hardware-icons.html">
+  <link rel="import" href="bower_components/iron-icons/av-icons.html">
+  <link rel="import" href="bower_components/iron-icons/social-icons.html">
+  <link rel="import" href="bower_components/iron-icons/notification-icons.html">
+  <link rel="import" href="bower_components/iron-icons/communication-icons.html">
+  <link rel="import" href="bower_components/iron-image/iron-image.html">
+  <link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
+  <link rel="import" href="bower_components/paper-progress/paper-progress.html">
+  <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+  <link rel="import" href="bower_components/google-youtube/google-youtube.html">
+  <link rel="import" href="bower_components/google-map/google-map.html">
+  <link rel="import" href="bower_components/google-analytics/google-analytics.html">
+  <!-- endreplace-->
+  <google-analytics-query
+  ids="ga:UA-66600699-1"
+  metrics="ga:sessions"
+  dimensions="ga:country"
+  sort="-ga:sessions"
+  maxResults="5">
+</google-analytics-query>
+</head>
+
+<body unresolved class="fullbleed layout vertical">
+  <span id="browser-sync-binding"></span>
+  <template is="dom-bind" id="app">
+
+    <paper-drawer-panel id="paperDrawerPanel">
+      <div drawer>
+
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <div><iron-image
+            src="images/touch/chrome.png"
+            style="width:50px; height:50px"
+            sizing="contain"
+            ></iron-image></div>
+          <span class="paper-font-title">Menú</span>
+
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+          <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+
+              <a data-route="Mutxamel" href="/">
+                <iron-icon icon="home"></iron-icon>
+                <span>Inici</span>
+              </a>
+              <a data-route="Benvolguda" href="/Benvolguda">
+                <iron-icon icon="social:public"></iron-icon>
+                <span>Benvinguda</span>
+              </a>
+
+              <a data-route="Directiva" href="/Directiva">
+                <iron-icon icon="face"></iron-icon>
+                <span>Directiva</span>
+              </a>
+
+              <a data-route="Història" href="/Història">
+                <iron-icon icon="history"></iron-icon>
+                <span>Història</span>
+              </a>
+
+              <a data-route="Seus" href="/Seus">
+                <iron-icon icon="store"></iron-icon>
+                <span>Seus</span>
+              </a>
+
+              <a data-route="Capitaníes" href="/Capitaníes">
+                <iron-icon icon="notification:wc"></iron-icon>
+                <span>Capitanies</span>
+              </a>
+
+
+              <a data-route ="Contacte" href="/Contacte">
+                <iron-icon icon="communication:mail"></iron-icon>
+                <span>Contacte</span>
+              </a>
+              <a data-route ="Fotos" href="/Fotos">
+                <iron-icon icon="perm-media"></iron-icon>
+                <span>Fotos</span>
+              </a>
+
+
+
+
+
+
+          </paper-menu>
+      </div>
+      <paper-header-panel main mode="waterfall-tall">
+
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar">
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <span class="flex"></span>
+
+
+
+
+          <!-- Application name -->
+
+
+          <div class="middle paper-font-display3 app-name"> Els Pacos </div>
+          <a href="index.html#!">
+        <paper-button raised><font color="white">CASTELLANO</font></paper-button>
+    </a>
+
+
+          <!-- Application sub title -->
+<div class="bottom title">{{route}}</div>
+
+</div>
+
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+            <section data-route="Mutxamel">
+
+
+<paper-material>
+<img src="/images/web/main.jpg"sizing="contain" style="width:100%;"/>
+
+</paper-material>
+<paper-material>
+  <h1>NOTICÍES IMPORTANTS</h1>
+<p> A continuació teniu disponible la informació sobre la loteria d'aquest any i també la convocatòria de l'assemblea del 30 d'Octubre.</p>
+<p><a href="https://goo.gl/rgwFNH">  <paper-button raised>LOTERIA</paper-button></a></p>
+<p><a href="https://goo.gl/dQVpUL">  <paper-button raised>CONVOCATÒRIA ASAMBLEA</paper-button></a></p>
+</paper-material>
+
+
+
+
+
+
+
+<div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+
+
+            </section>
+
+            <section data-route="Directiva">
+
+
+
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/presi.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>PRESIDENT</h1></p><p>José Pastor Alberola</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/vice.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>VICEPRESIDENT</h1></p><p>José E. Blasco Alemany</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/secre.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>SECRETARI</h1></p><p>Jesús Torregrosa Ivorra</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/tesorero.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>TRESORER</h1></p><p>Baldomero Aracil Sala</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/musica.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>MÚSICA I TIROTEIG</h1></p><p>Pere Martinez Sarabia</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/barraca1.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>BARRACA</h1></p><p>Jose Luis Roca</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/barraca.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>BARRACA</h1></p><p>Manuel Gomis</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><img src="/images/web/informatica.jpg"sizing="cover" style="width:150px;height:200px "  /></div>
+              <div> <div class="horizontal layout center">
+              <div><p><h1>INFORMÀTICA</h1></p><p>Pepe Blasco</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><p><h1>ALCALDES DE FESTES</h1></p></div>
+              <div> <div class="horizontal layout center">
+              <div><p>Germán Perez</p><p>Jose L. Roca</p><p>Manuel Gomis</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+              <div class="flex"><paper-material elevation="3">
+              <div class="horizontal around-justified layout">
+              <div><p><h1>ACTIVITATS</h1></p></div>
+              <div> <div class="horizontal layout center">
+              <div><p>Jorge Pérez</p><p>Fernando del Campo</p><p>Baldomero Aracil</p></div>
+              </div></div>
+              </div></paper-material></div>
+
+
+
+
+
+
+
+
+              <div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+
+              </section>
+
+
+
+              <section data-route="Història">
+                <paper-material>
+
+                  <p>Era l’any 1923 quan el poble de Mutxamel i les seues Festes de Moros i Cristians veien nàixer una nova Comparsa ”ELS PACOS”. La paraula Paco té el seu origen en les campanyes del Marroc. Amb ella s'identificava al moro que disparava a les tropes espanyoles; la seua tàctica es basava en escudar-se entre les roques i efectuar tirs aïllats, aquesta forma de guerrejar es deia ”paqueo”.</p>
+
+                  <p>Els pacos desfilen al so de la marxa del mateix nom ”Els Pacos”, d’autor anònim (encara que alguns l’atribueixen al mateix Pérez Lledó). Amb el temps es va perdre part del que realment era la marxa i, a la fi dels 80, al trobar-se unes partitures molt antigues a casa de D. Francisco Poveda, el mestre D. José Sala va realitzar els arranjaments necessaris, dotant a la marxa de l’harmonització de la qual mancava, sent estrenada en la capitania de l’any 1989.</p>
+                  <img src="/images/web/historia1.jpg" sizing="cover" style="width:75%;"/>
+
+                  <p>D. Vicente Pérez Lledó, músic militar destinat a Melilla, per encàrrec d’un grup d’amics mutxamelers, va portar els primers vestits i complements fins al nostre poble. Borsa i gumia són còpia exacta del model original, la gel·laba roman també quasi immutable, admetent solament lleugeres variacions en el colorit de les seues franges verticals, que canvien amb cada capitania.
+</p><img src="/images/web/historia2.jpg" sizing="cover" style="width:75%;"/>
+                  <p>La comparsa compta també amb marxes pròpies compostes per a altres capitanies: ”Pacos del Gurugú” composta per D. Ramón García i Soler per a la capitania de l’any 2004 .”Yallaba”, composta per D. José R. Pascual Vilaplana, per a la capitania de 2008 i finalment, també "Pacos 1923" i "Shukara", compostes per Francisco Valor Llorens al 2013.
+</p><img src="/images/web/historia3.jpg" sizing="cover" style="width:75%;"/>
+                  <p>El vestit oficial de la nostra comparsa està format per:
+                    </p>
+                    <ul>
+                  <li>Gel·laba (DYILABA) a ratlles que per aquell temps vestien els rifenys.</li>
+                  <li>Unes espardenyes grogues amb una mitja lluna en roig (JUFFA).</li>
+                  <li>Una borsa per a les municions (SHUKARA).</li>
+                  <li>Un capell roig del que penja una borla negra (FES)</li>
+                  <li>Una gumia (HUSAM) que és una daga una mica corba.</li>
+</ul>
+</p><img src="/images/web/capa1.jpg" sizing="cover" style="width:75%;"/>
+
+                </paper-material>
+
+                <div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+
+              </section>
+
+
+
+
+              <section data-route="Seus">
+                <paper-material><p>La nostra Comparsa compta amb dos locals popis: la seu social de la comparsa està situada en el carrer Mare de Déu de la Mercè, 73. Situada en un local comercial tancat, permet als components de la comparsa disposar d'un lloc de reunió i celebració de diversos actes festers.</p>
+                  <div class="vertical layout center" >
+          <div><img src="/images/web/sedes.jpg"sizing="cover" style="width:75%;"  /></div>
+      </div>
+
+
+                <p> La barraca de la comparsa està situada en el carrer Joan XXIII, 32. En ella es celebren tots els actes propis de les festes de Setembre.</p></paper-material>
+
+<paper-material><google-map  fit-to-markers>
+  <google-map-marker latitude="38.41762" longitude="-0.44241"
+       ></google-map-marker>
+  <google-map-marker latitude="38.41403" longitude="-0.44255"></google-map-marker>
+</google-map></paper-material>
+<div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+
+              </section>
+
+
+      <google-map latitude="37.042992533737696" longitude="-121.86049055664063" id="google_map"></google-map>
+
+
+              <section data-route="Capitaníes">
+
+                <paper-material>
+              Ací podeu trobar les fotos de capitanies anteriors. Per a vore les imatges, feu clic a la targeta.<iron-icon icon="visibility"></iron-icon>
+                </paper-material>
+
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofjhuUzRxX041a3FrTnRiaTN3NEtENkpZQTg3NDZCNWZoM1NjODAwaEpOTHM&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>2013</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Fran Rodríguez</p><p>Mireia López</p><p>Francisco Rodríguez</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofmN3U0ViX0d3VG14THRGUzZmRWE0VlJ1aVdTZlpHalhwMHVEdTd6a1E0cmc&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>2008</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Rafael Gómis</p><p>Mª José Gómis</p><p>Silvia Gómis</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofnQzdlQzZ19tRHlmbWVkU2c1TzJDQWZsclhockZlal9tQUlWc2NmQXFrbFk&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>2003</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Juan L. Giner</p><p>Isabel Mª Mira</p><p>Juan M. Bedmar</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6oflhXQUR6dkdIVFoxV3JKdUh2eUVHdndfWVhZWTN0SDg1bGJGd2NHd0FlTUU&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1998</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>José C. Aracil</p><p>Felicia Mª Aracil</p><p>Francisco J. Ferrándiz</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofk56YkNCVGtHZTJDM3ZUTldobGpyN1BqWXd4eTRTSVRnTG95XzUyNGN0QUU&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1993</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Francisco Rodriguez</p><p>Catalina Rebelles</p><p>David Rebelles</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofkdUWVZLVms3bk5VMEtxdVd5WXlzOHRhNDZYNzBkMDcwSjdFNWRqSVRSY28&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1989</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Francisco Gómez</p><p>Mª Loreto Gómez</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6oflhDZEhMX0tFUGVpeFJUX24ybjItMUtGZXozU3NUbFlZYk5Va3FXN05mZlE&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1984</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Luis Domenech</p><p>Yolanda Domenech</p><p>Manuel Brotons</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6oflpIa045NGhsd2RnNV9OTFZxdGJ5Q1BJb1FybmlwN0F4S2ZzeUI2dUFPaUU&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1980</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Manuel Gómez</p><p>Mª José Gómez</p><p>J. Francisco Soler</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofndJUExxVngwa1JzTVRRV29hQXZULTFZM3JZaUtjempzUi1MdjF0aktfaEk&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1976</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Antonio García</p><p>Trini Ripoll</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofnNyQVR1aWkycDZTdlNRaXVTRFQ5ZkZEa1hmMHVJTXk1cmdPbnlLbnFmX0U&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1972</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Francisco Alerola</p><p>Mª Teresa Riera</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofjVnQTlaeFBSZFRPOUIteXctV1IxZzZtZVl0NFpsUjZNVnVHcTNNNkh4MjQ&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1968</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Ángel Chofre</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofmxXZ2dpZGJWc1FuUTJQSktzcVo5UFZSTnJMd2oxLVdGLVNIZmNWZHQ5RU0&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1964</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Ángel Torregrosa</p></div>
+                </div></div>
+                </div></paper-material></div></a>
+
+                <a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofmo3OGJRNGx5cFNkcTI2bXZvWHlYOUpzR2dQN2R1b2hPNmZRQUxRZnhTSDQ&usp=sharing" style="color:black;text-decoration:none;" target="_blank">
+                <div class="flex"><paper-material elevation="3">
+                <div class="horizontal around-justified layout">
+                <div><p><h1>1960</h1></p></div>
+                <div> <div class="horizontal layout center">
+                <div><p>Salvador Blasco</p></div>
+                </div></div>
+              </div></paper-material></div></a>
+              <div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+
+
+            </section>
+
+            <section data-route="Contacte">
+            <paper-material><p>Per a posar-te en contacte amb nosaltres, envia un correu a <a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a> o passa't per la barraca de baix els últims divendres de cada mes en horari de 20:30-21:30.</p></paper-material>
+
+            <paper-material><google-map  fit-to-markers>
+              <google-map-marker latitude="38.41762" longitude="-0.44241"
+                   ></google-map-marker>
+              <google-map-marker latitude="38.41403" longitude="-0.44255"></google-map-marker>
+            </google-map></paper-material>
+            <div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+
+            </section>
+            <section data-route="Fotos">
+           <paper-material><p>Ací podeu trobar fotos de la comparsa, si voleu que les vostres fotos també estiguen ací, feu-nos-les arribar a la comparsa.</p></peper-material>
+
+
+           <p><a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6oflJweWpoUWZJOFBCMGxnc3Zub1ZqNXBrS3ZpLURlcGFjUXlYWnl0dE9KNFk&usp=sharing"style="color:black;text-decoration:none;" target="_blank">  <paper-button raised>CAPITANIES</paper-button></a></p>
+           <p><a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofkdBWl9JSll4OElmTFFiNllnVUxueDJDdklYOVE4S3pkdWE2YlVyNXkwT00&usp=sharing"style="color:black;text-decoration:none;" target="_blank">  <paper-button raised>FOTOS ANTIGUES</paper-button></a></p>
+           <p><a href="https://drive.google.com/folderview?id=0B8aNa0DHoV6ofjBoS2JLZW9udVpoRElmZ1RUNmxuRUZjXzRkUEVldTNSMmJVQ3JtT3JPcVk&usp=sharing"style="color:black;text-decoration:none;" target="_blank">  <paper-button raised>LES VOSTRES FOTOS</paper-button></a></p>
+           <img src="/images/web/cerveza.jpg"sizing="contain" style="width:100%;"/></paper-material>
+           <div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+</section>
+            <section data-route="Benvolguda">
+              <paper-material><img src="/images/web/main.jpg"sizing="contain" style="width:100%;"/>
+
+              <p>&nbsp</p>
+                <p>En la Comparsa Els Pacos volem evolucionar i adaptar-nos als temps i a la societat de cada moment, és per això que no podem girar la vista a la realitat actual, una realitat marcada per l’accessibilitat a qualsevol tipus d’informació a través d’esta gran finestra virtual que és Internet.</p>
+                <p> Aquest portal pretén ser una porta oberta a totes les festeres i festers Pacos. Volem que tots puguem estar informats al dia del que ocorre en la nostra Comparsa i, al mateix temps, que ens comuniqueu qualsevol inquietud o suggeriment. També pretenem que tot aquell visitant que navegue per esta pàgina obtinga una imatge real de la nostra Comparsa.</p>
+                <p>Esperem comptar amb la vostra participació i el vostre suport per a fer de la Comparsa Els Pacos una entitat de què, cada vegada més, puguem sentir-nos orgullosos.</p>
+                <p>&nbsp</p>
+                <p>José Pastor Alberola,</p>
+                <p>President de la Comparsa</p>
+              </paper-material>
+              <div class="footer"><p><iron-icon icon="hardware:phone-android"></iron-icon>Creado por Pepe Blasco <iron-icon icon="social:person"></iron-icon></p><p><a href="mailto:elspacos@mutxamel.net">elspacos@mutxamel.net</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://facebook.com/elspacos" >Facebook</a></p></div>
+  </section>
+
+          </iron-pages>
+        </div>
+      </paper-header-panel>
+
+    </paper-drawer-panel>
+
+    <paper-toast id="caching-complete"
+                 duration="6000"
+                 text="Caching complete! This app will work offline.">
+    </paper-toast>
+
+    <platinum-sw-register auto-register
+                          clients-claim
+                          skip-waiting
+                          on-service-worker-installed="displayInstalledToast">
+      <platinum-sw-cache default-cache-strategy="networkFirst"
+                         precache-file="precache.json">
+      </platinum-sw-cache>
+    </platinum-sw-register>
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
+</body>
+
+</html>

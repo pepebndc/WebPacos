@@ -1,0 +1,22 @@
+{
+  "name": "polymer-starter-kit",
+  "private": true,
+  "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#1.0.0",
+    "paper-elements": "PolymerElements/paper-elements#1.0.1",
+    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
+    "neon-elements": "PolymerElements/neon-elements#1.0.0",
+    "page": "visionmedia/page.js#~1.6.3",
+    "google-youtube": "GoogleWebComponents/google-youtube#1.1.0",
+    "paper-input": "PolymerElements/paper-input#1.0.0",
+    "paper-checkbox": "PolymerElements/paper-checkbox#1.0.0",
+    "paper-toggle-button": "PolymerElements/paper-toggle-button#~1.0.5",
+    "google-map": "GoogleWebComponents/google-map#1.0.0",
+    "iron-collapse": "PolymerElements/iron-collapse#~1.0.3",
+    "google-analytics": "GoogleWebComponents/google-analytics#1.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "*",
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0"
+  }
+}
